@@ -4,7 +4,7 @@ import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PageLoader from './components/PageLoader';
-import EntryScreen from './components/EntryScreen';
+// import EntryScreen from './components/EntryScreen';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
@@ -33,7 +33,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
-      <EntryScreen />
+      {/* <EntryScreen /> */}
       {loading && <PageLoader />}
       <TopBar />
       <Navbar />

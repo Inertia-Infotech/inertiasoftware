@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import '../styles/Reviews.css';
 
 const reviewsData = [
@@ -54,23 +54,36 @@ const Reviews = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef(null);
 
-  const goTo = (index) => {
+  const goTo = useCallback((index) => {
     if (isAnimating) return;
+
     setIsAnimating(true);
     setCurrent(index);
-    setTimeout(() => setIsAnimating(false), 500);
-  };
 
-  const next = () => goTo((current + 1) % reviewsData.length);
-  const prev = () => goTo((current - 1 + reviewsData.length) % reviewsData.length);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 500);
+  }, [isAnimating]);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % reviewsData.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + reviewsData.length) % reviewsData.length);
+  }, []);
 
   useEffect(() => {
-    intervalRef.current = setInterval(next, 4500);
+    intervalRef.current = setInterval(() => {
+      next();
+    }, 4500);
+
     return () => clearInterval(intervalRef.current);
-  }, [current]);
+  }, [next]);
 
   const getVisibleIndices = () => {
     const len = reviewsData.length;
+
     return [
       (current - 1 + len) % len,
       current,
@@ -83,10 +96,15 @@ const Reviews = () => {
   return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-bg-shape"></div>
+
       <div className="container">
         <div className="reviews-header">
           <span className="section-tag">Testimonials</span>
-          <h2 className="section-title">What Our Clients Say</h2>
+
+          <h2 className="section-title">
+            What Our Clients Say
+          </h2>
+
           <p className="section-subtitle">
             Don't just take our word for it — hear from the businesses we've helped transform.
           </p>
@@ -97,29 +115,48 @@ const Reviews = () => {
             {visibleIndices.map((idx, pos) => {
               const review = reviewsData[idx];
               const isCenter = pos === 1;
+
               return (
                 <div
                   key={`${idx}-${pos}`}
-                  className={`review-card ${isCenter ? 'review-card--active' : 'review-card--side'}`}
+                  className={`review-card ${
+                    isCenter
+                      ? 'review-card--active'
+                      : 'review-card--side'
+                  }`}
                   style={{ '--review-color': review.color }}
                   onClick={() => !isCenter && goTo(idx)}
                 >
                   <div className="review-quote">
                     <i className="fa fa-quote-left"></i>
                   </div>
-                  <p className="review-text">{review.text}</p>
+
+                  <p className="review-text">
+                    {review.text}
+                  </p>
+
                   <div className="review-stars">
                     {Array.from({ length: review.rating }).map((_, i) => (
                       <i key={i} className="fa fa-star"></i>
                     ))}
                   </div>
+
                   <div className="review-author">
-                    <div className="review-avatar" style={{ background: review.color }}>
+                    <div
+                      className="review-avatar"
+                      style={{ background: review.color }}
+                    >
                       {review.avatar}
                     </div>
+
                     <div>
-                      <div className="review-name">{review.name}</div>
-                      <div className="review-role">{review.role}</div>
+                      <div className="review-name">
+                        {review.name}
+                      </div>
+
+                      <div className="review-role">
+                        {review.role}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -128,20 +165,34 @@ const Reviews = () => {
           </div>
 
           <div className="reviews-controls">
-            <button className="reviews-arrow" onClick={prev} aria-label="Previous">
+            <button
+              className="reviews-arrow"
+              onClick={prev}
+              aria-label="Previous"
+            >
               <i className="fa fa-chevron-left"></i>
             </button>
+
             <div className="reviews-dots">
               {reviewsData.map((_, idx) => (
                 <button
                   key={idx}
-                  className={`reviews-dot ${idx === current ? 'reviews-dot--active' : ''}`}
+                  className={`reviews-dot ${
+                    idx === current
+                      ? 'reviews-dot--active'
+                      : ''
+                  }`}
                   onClick={() => goTo(idx)}
                   aria-label={`Go to review ${idx + 1}`}
                 />
               ))}
             </div>
-            <button className="reviews-arrow" onClick={next} aria-label="Next">
+
+            <button
+              className="reviews-arrow"
+              onClick={next}
+              aria-label="Next"
+            >
               <i className="fa fa-chevron-right"></i>
             </button>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
@@ -32,6 +33,9 @@ function AppContent() {
 
   return (
     <>
+      <div>
+        <SpeedInsights/>
+      </div>
       <ScrollToTop />
       {/* <EntryScreen /> */}
       {loading && <PageLoader />}

@@ -6,9 +6,9 @@ const TopBar = () => {
     <div className="topbar">
       <div className="container topbar-inner">
         <div className="topbar-left">
-          <a href="mailto:inertiainfotech@gmail.com" className="topbar-link">
+          <a href="mailto:connect@inertiasoftware.in" className="topbar-link">
             <i className="fa fa-envelope"></i>
-            <span>inertiainfotech@gmail.com</span>
+            <span>connect@inertiasoftware.in</span>
           </a>
           <a href="https://wa.me/919270166932" target="_blank" rel="noopener noreferrer" className="topbar-link">
             <i className="fab fa-whatsapp"></i>

@@ -68,9 +68,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:inertiainfotech@gmail.com" className="footer-contact-item">
+                <a href="mailto:connect@inertiasoftware.in" className="footer-contact-item">
                   <i className="fa fa-envelope"></i>
-                  inertiainfotech@gmail.com
+                  connect@inertiasoftware.in
                 </a>
               </li>
               <li>

@@ -57,13 +57,13 @@ const ContactSection = () => {
                 </div>
               </a>
 
-              <a href="mailto:inertiainfotech@gmail.com" className="contact-info-item">
+              <a href="mailto:connect@inertiasoftware.in" className="contact-info-item">
                 <div className="contact-info-icon" style={{ '--ci-color': '#7c3aed' }}>
                   <i className="fa fa-envelope"></i>
                 </div>
                 <div>
                   <span className="contact-info-label">Email Us</span>
-                  <span className="contact-info-value">inertiainfotech@gmail.com</span>
+                  <span className="contact-info-value">connect@inertiasoftware.in</span>
                 </div>
               </a>
 

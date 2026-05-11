@@ -20,6 +20,8 @@
   align-items: center;
   gap: 11px;
   margin-bottom: 20px;
+  background-color: aliceblue;
+  width: 80%;
 }
 
 /* .footer-logo-icon {

@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [careerDropdownOpen, setCareerDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +36,13 @@ const Navbar = () => {
     { to: '/contact', label: 'Contact' },
   ];
 
+  const careerLinks = [
+    { to: '/culture', label: 'Our Culture' },
+    { to: '/internships', label: 'Internships' },
+    { to: '/jobs', label: 'Jobs' },
+    { to: '/certificate-verification', label: 'Certificate Verification' },
+  ];
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar-inner">
@@ -58,6 +66,31 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+          {/* Career Dropdown */}
+          <li className="navbar-dropdown-wrapper">
+            <button
+              className={`navbar-link navbar-dropdown-toggle ${careerDropdownOpen ? 'navbar-dropdown-toggle--open' : ''}`}
+              onClick={() => setCareerDropdownOpen(!careerDropdownOpen)}
+            >
+              Career
+              <i className={`fa fa-chevron-down navbar-dropdown-arrow ${careerDropdownOpen ? 'navbar-dropdown-arrow--open' : ''}`}></i>
+            </button>
+            <ul className={`navbar-dropdown-menu ${careerDropdownOpen ? 'navbar-dropdown-menu--open' : ''}`}>
+              {careerLinks.map((link) => (
+                <li key={link.to}>
+                  <NavLink
+                    to={link.to}
+                    className={({ isActive }) =>
+                      `navbar-dropdown-link ${isActive ? 'navbar-dropdown-link--active' : ''}`
+                    }
+                    onClick={() => setCareerDropdownOpen(false)}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </li>
         </ul>
 
         {/* Book Appointment */}
@@ -95,6 +128,34 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+          {/* Mobile Career Dropdown */}
+          <li>
+            <button
+              className={`mobile-link mobile-dropdown-toggle ${careerDropdownOpen ? 'mobile-dropdown-toggle--open' : ''}`}
+              onClick={() => setCareerDropdownOpen(!careerDropdownOpen)}
+            >
+              Career
+              <i className={`fa fa-chevron-down mobile-dropdown-arrow ${careerDropdownOpen ? 'mobile-dropdown-arrow--open' : ''}`}></i>
+            </button>
+            <ul className={`mobile-dropdown-menu ${careerDropdownOpen ? 'mobile-dropdown-menu--open' : ''}`}>
+              {careerLinks.map((link) => (
+                <li key={link.to}>
+                  <NavLink
+                    to={link.to}
+                    className={({ isActive }) =>
+                      `mobile-dropdown-link ${isActive ? 'mobile-dropdown-link--active' : ''}`
+                    }
+                    onClick={() => {
+                      setCareerDropdownOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </li>
         </ul>
         <button className="btn-primary mobile-cta" onClick={handleBookAppointment}>
           <i className="fa fa-calendar-check"></i>

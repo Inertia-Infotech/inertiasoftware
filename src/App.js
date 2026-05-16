@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import CertificateVerification from './pages/CertificateVerification';
 import './styles/global.css';
 
 function ScrollToTop() {
@@ -48,6 +49,7 @@ function AppContent() {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/certificate-verification" element={<CertificateVerification />} />
         </Routes>
       </main>
       <Footer />

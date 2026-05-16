@@ -1,0 +1,86 @@
+Update the existing production website by adding a new “Career” menu item in the Navbar without changing any existing layout, styling, components, spacing, or functionality.
+
+Requirements:
+
+1. Navbar Update
+
+* Add a new Navbar menu named “Career”.
+* Career menu should contain a modern dropdown menu with the following options:
+
+  * Our Culture
+  * Internships
+  * Jobs
+  * Certificate Verification
+
+2. Dropdown Design
+
+* Dropdown must perfectly match the existing website UI/UX.
+* Use the same:
+
+  * typography
+  * color palette
+  * border radius
+  * hover effects
+  * shadows
+  * animations
+  * spacing
+  * transition effects
+  * glassmorphism / modern effect style (if already used)
+* Dropdown animation should feel smooth and premium like other existing components.
+* Ensure responsive behavior for desktop and mobile navbar.
+
+3. Certificate Verification Page
+   Create a fully responsive “Certificate Verification” page that follows the exact existing frontend design system and branding.
+
+Page Features:
+
+* Professional hero/header section
+* Certificate demo preview card
+* Input field to enter Certificate ID
+* QR Scan button with camera icon support
+* Modern verification UI
+
+Verification Result Section:
+When user enters valid certificate ID or scans QR:
+Display:
+
+* Candidate Name
+* Internship Date
+* Certificate Assigned Date
+* Join Date
+* End Date
+* Authorizing Organisation
+* Company ID
+* Verification Status (Verified)
+
+4. Frontend Consistency
+   The new page and components MUST:
+
+* use same font family
+* same theme colors
+* same button style
+* same animation library/effects
+* same shadows/glows
+* same card design system
+* same spacing and responsiveness
+* same transitions/micro interactions
+  as existing production pages.
+
+5. Important Constraints
+
+* DO NOT modify any existing page design or functionality.
+* DO NOT change existing routes/components/styles.
+* Only add the new Career section and Certificate Verification feature.
+* Keep code structure clean and production-ready.
+* Reuse existing reusable components/styles whenever possible.
+
+6. Routing
+
+* Clicking “Certificate Verification” from Career dropdown should redirect properly to the deployed/render route page.
+* Maintain existing routing architecture.
+
+7. Development Quality
+
+* Keep the UI modern, premium, and software-company professional.
+* Use optimized frontend practices and responsive layouts.
+* Maintain smooth animations and polished interactions throughout.

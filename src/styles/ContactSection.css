@@ -147,7 +147,7 @@
 .contact-card-image {
   width: 100%;
   border-radius: var(--radius-md);
-  height: 160px;
+  height: 135px;
   object-fit: cover;
 }
 
@@ -252,5 +252,5 @@
   .contact-section { padding: 72px 0; }
   .contact-form-wrapper { padding: 28px 20px; }
   .form-row { grid-template-columns: 1fr; }
-  .contact-card-image { display: none; }
+  /* .contact-card-image { display: none; } */
 }

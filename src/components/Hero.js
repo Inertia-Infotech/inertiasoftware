@@ -33,7 +33,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero-subtitle">
-            Inertia Infotech helps startups and enterprises transform ideas into powerful software. From web apps to ERP systems — we deliver with precision and passion.
+            Inertia Software's helps startups and enterprises transform ideas into powerful software. From web apps to ERP systems — we deliver with precision and passion.
           </p>
 
           <div className="hero-actions">

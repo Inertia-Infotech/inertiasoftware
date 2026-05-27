@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="container navbar-inner">
         {/* Logo */}
         <Link to="/" className="navbar-logo" onClick={() => setMenuOpen(false)}>
-          <img src={logo} alt="Inertia Infotech" className="navbar-logo-img" />
+          <img src={logo} alt="Inertia Software" className="navbar-logo-img" />
         </Link>
 
         {/* Desktop Nav */}

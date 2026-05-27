@@ -13,10 +13,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="footer-col footer-col--wide">
             <Link to="/" className="footer-logo">
-              <div className="" style={{ color: 'white' }}><img src={logo} alt="Inertia Infotech" className="navbar-logo-img" /></div>
+              <div className="" style={{ color: 'white' }}><img src={logo} alt="Inertia Software" className="navbar-logo-img" /></div>
             </Link>
             <p className="footer-about">
-              Inertia Infotech is a forward-thinking software development company committed to building digital solutions that matter. From startups to enterprises, we help businesses thrive in the digital age.
+              Inertia Software is a forward-thinking software development company committed to building digital solutions that matter. From startups to enterprises, we help businesses thrive in the digital age.
             </p>
             <div className="footer-socials">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social" aria-label="Instagram">
@@ -88,7 +88,7 @@ const Footer = () => {
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
-                title="Inertia Infotech Location"
+                title="Inertia Software Location"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
@@ -100,7 +100,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <p className="footer-copyright">
-            © {currentYear} Inertia Infotech. All rights reserved.
+            © {currentYear} Inertia Software. All rights reserved.
           </p>
           <p className="footer-tagline">
             Crafted with <i className="fa fa-heart" style={{ color: '#e11d48' }}></i> in Maharashtra, India

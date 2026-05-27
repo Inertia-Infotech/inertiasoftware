@@ -33,7 +33,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero-subtitle">
-            Inertia Software's helps startups and enterprises transform ideas into powerful software. From web apps to ERP systems — we deliver with precision and passion.
+            Inertia Software helps startups and enterprises transform ideas into powerful software. From web apps to ERP systems — we deliver with precision and passion.
           </p>
 
           <div className="hero-actions">
@@ -76,7 +76,7 @@ const Hero = () => {
           <div className="hero-image-wrapper">
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80"
-              alt="Inertia Infotech team at work"
+              alt="Inertia Software team at work"
               className="hero-image"
             />
             {/* Floating cards */}

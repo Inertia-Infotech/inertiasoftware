@@ -58,7 +58,7 @@ const WhyUs = () => {
       <div className="container">
         <div className="whyus-layout">
           <div className={`whyus-left ${visible ? 'whyus-left--visible' : ''}`}>
-            <span className="section-tag">Why Inertia Infotech</span>
+            <span className="section-tag">Why Inertia Software</span>
             <h2 className="section-title">The Partner You've Been Looking For</h2>
             <p className="section-subtitle">
               We're not just developers — we're your technology partner. We bring expertise, integrity, and genuine care to every project we touch.

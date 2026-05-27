@@ -7,7 +7,7 @@ const PageLoader = () => {
   return (
     <div className="page-loader">
       <div className="loader-content">
-        <div className="loader-logo"><img src={logo} alt="Inertia Infotech" className="navbar-logo-img" />
+        <div className="loader-logo"><img src={logo} alt="Inertia Software" className="navbar-logo-img" />
         </div>
         <div className="loader-bar">
           <div className="loader-bar-fill"></div>

@@ -99,7 +99,7 @@ const EntryScreen = () => {
           fontWeight: 800,
           letterSpacing: '-1px'
         }}>
-          Inertia Infotech
+          Inertia Software
         </h1>
         <button
           onClick={handleStart}

@@ -23,7 +23,7 @@ const CertificateVerification = () => {
         certificateAssignedDate: 'March 20, 2024',
         joinDate: 'January 15, 2024',
         endDate: 'March 15, 2024',
-        authorizingOrganisation: 'Inertia Infotech',
+        authorizingOrganisation: 'Inertia Software',
         companyId: 'II-2024-001',
         verificationStatus: 'Verified'
       });
@@ -51,7 +51,7 @@ const CertificateVerification = () => {
             <span className="section-tag">Career</span>
             <h1 className="page-hero-title">Certificate Verification</h1>
             <p className="page-hero-subtitle">
-              Verify the authenticity of internship and training certificates issued by Inertia Infotech. Enter your certificate ID or scan the QR code for instant verification.
+              Verify the authenticity of internship and training certificates issued by Inertia Software. Enter your certificate ID or scan the QR code for instant verification.
             </p>
           </div>
         </div>

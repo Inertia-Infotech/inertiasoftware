@@ -24,7 +24,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const text = `Hello Inertia Infotech!%0A%0AI'd like to enquire about your services.%0A%0A*Name:* ${form.name}%0A*Email:* ${form.email}%0A*Mobile:* ${form.mobile}%0A*Service:* ${form.service}%0A*Message:* ${form.message}`;
+    const text = `Hello Inertia Software!%0A%0AI'd like to enquire about your services.%0A%0A*Name:* ${form.name}%0A*Email:* ${form.email}%0A*Mobile:* ${form.mobile}%0A*Service:* ${form.service}%0A*Message:* ${form.message}`;
     window.open(`https://wa.me/919270166932?text=${text}`, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -68,7 +68,7 @@ const ContactSection = () => {
               </a>
 
               <a
-                href="https://wa.me/919270166932?text=Hello%20Inertia%20Infotech!%20I%27d%20like%20to%20discuss%20a%20project."
+                href="https://wa.me/919270166932?text=Hello%20Inertia%20Software!%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-info-item"

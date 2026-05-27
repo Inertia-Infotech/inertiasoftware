@@ -1,6 +1,6 @@
-# Inertia Infotech - Company Website
+# Inertia Software - Company Website
 
-A production-ready React.js website for **Inertia Infotech**, a software development startup.
+A production-ready React.js website for **Inertia Software**, a software development startup.
 
 ## 🚀 Quick Start
 
@@ -17,7 +17,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-inertia-infotech/
+inertia-software/
 ├── public/
 │   └── index.html
 ├── src/

@@ -9,7 +9,7 @@ const reviewsData = [
     avatar: 'RS',
     color: '#0d6efd',
     rating: 5,
-    text: "Inertia Infotech completely transformed our business. They built our ERP system from scratch, and the results are incredible. Our productivity increased by 40% within the first month. The team's dedication and technical expertise is unmatched.",
+    text: "Inertia Software completely transformed our business. They built our ERP system from scratch, and the results are incredible. Our productivity increased by 40% within the first month. The team's dedication and technical expertise is unmatched.",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const reviewsData = [
     avatar: 'PM',
     color: '#7c3aed',
     rating: 5,
-    text: "The e-commerce platform they built for us is stunning and performs brilliantly. Orders have doubled since launch. Inertia Infotech understood our vision perfectly and delivered beyond expectations. Highly recommended!",
+    text: "The e-commerce platform they built for us is stunning and performs brilliantly. Orders have doubled since launch. Inertia Software understood our vision perfectly and delivered beyond expectations. Highly recommended!",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const reviewsData = [
     avatar: 'SK',
     color: '#d97706',
     rating: 5,
-    text: "The mobile app they developed for our ed-tech platform is exceptional. Smooth, intuitive, and loved by our 10,000+ users. Inertia Infotech's communication throughout the project was excellent — always responsive and transparent.",
+    text: "The mobile app they developed for our ed-tech platform is exceptional. Smooth, intuitive, and loved by our 10,000+ users. Inertia Software's communication throughout the project was excellent — always responsive and transparent.",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const reviewsData = [
     avatar: 'VD',
     color: '#e11d48',
     rating: 5,
-    text: "We needed a complex inventory management system integrated with our existing tools. Inertia Infotech delivered a flawless solution on time and on budget. The post-launch support has been equally impressive.",
+    text: "We needed a complex inventory management system integrated with our existing tools. Inertia Software delivered a flawless solution on time and on budget. The post-launch support has been equally impressive.",
   },
 ];
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { settledPromise } from '../lib/useAnimateInView';
 import sitaiHero from '../assets/work/sitai-hero.jpg';
 import sitaiMilk from '../assets/work/sitai-milk.jpg';
 import sitaiButter from '../assets/work/sitai-butter.jpg';
@@ -18,7 +19,19 @@ import tmBooks from '../assets/work/tm-books.jpg';
 // where 1em = 1% of the card width (container query units), so each shot scales
 // perfectly from a phone card to a full-width desktop card.
 
-const Img = ({ src, alt = '' }) => <img src={src} alt={alt} decoding="async" fetchpriority="low" />;
+// Photos start downloading right after the page has loaded (not during it), so the
+// first paint stays fast and the gallery is ready before anyone scrolls to it.
+function Img({ src, alt = '' }) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    settledPromise.then(() => alive && setReady(true));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return ready ? <img src={src} alt={alt} decoding="async" /> : null;
+}
 
 function Browser({ url, children, className = '' }) {
   return (

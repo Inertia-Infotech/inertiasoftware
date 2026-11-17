@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 // Resolves once the page has finished loading and the browser has a quiet moment,
 // so decorative animations never compete with the first paint.
 let settled = false;
-const settledPromise = new Promise((resolve) => {
+export const settledPromise = new Promise((resolve) => {
   if (typeof window === 'undefined') return;
   const done = () => {
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300));

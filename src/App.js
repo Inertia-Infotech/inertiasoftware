@@ -1,68 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import TopBar from './components/TopBar';
-import Navbar from './components/Navbar';
+import React, { useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import Header from './components/Header';
 import Footer from './components/Footer';
-import PageLoader from './components/PageLoader';
-// import EntryScreen from './components/EntryScreen';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
-import Portfolio from './pages/Portfolio';
+import Work from './pages/Work';
 import Contact from './pages/Contact';
-import CertificateVerification from './pages/CertificateVerification';
-import './styles/global.css';
+import NotFound from './pages/NotFound';
+import { initSmoothScroll, scrollToTop, ScrollTrigger, gsap, useGSAP, prefersReducedMotion } from './lib/motion';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [pathname]);
-  return null;
+function Page({ children }) {
+  const ref = useRef(null);
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+      gsap.from(ref.current, { autoAlpha: 0, duration: 0.6, ease: 'power2.out' });
+    },
+    { scope: ref }
+  );
+  return <div ref={ref}>{children}</div>;
 }
 
-function AppContent() {
-  const [loading, setLoading] = useState(false);
-  const location = useLocation();
+function Shell() {
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 600);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+    initSmoothScroll();
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  }, []);
+
+  // Fresh page → start at the top (or the #section) and re-measure scroll animations.
+  useEffect(() => {
+    if (!hash) scrollToTop();
+    const id = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      if (hash) document.querySelector(hash)?.scrollIntoView();
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname, hash]);
 
   return (
     <>
-      <div>
-        <SpeedInsights/>
-      </div>
-      <ScrollToTop />
-      {/* <EntryScreen /> */}
-      {loading && <PageLoader />}
-      <TopBar />
-      <Navbar />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/certificate-verification" element={<CertificateVerification />} />
-        </Routes>
+      <a href="#main" className="skip">Skip to content</a>
+      <Header />
+      <main id="main">
+        <Page key={pathname}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/portfolio" element={<Navigate to="/work" replace />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Page>
       </main>
       <Footer />
+      <SpeedInsights />
     </>
   );
 }
 
-function App() {
+export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <BrowserRouter>
+      <Shell />
+    </BrowserRouter>
   );
 }
-
-export default App;

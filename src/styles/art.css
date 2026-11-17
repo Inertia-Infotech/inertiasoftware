@@ -1,0 +1,438 @@
+/* ==========================================================================
+   SVG illustrations: Newton's cradle + service art
+   ========================================================================== */
+
+/* Cradle ------------------------------------------------------------------ */
+.cradle {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.cr__frame line {
+  stroke: var(--line-2);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.cr__string {
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  opacity: 0.55;
+}
+
+.cr__shine {
+  fill: #fff;
+  opacity: 0.32;
+}
+
+.cr__shadow {
+  fill: var(--ink);
+  opacity: 0.06;
+}
+
+.cr__guide {
+  fill: none;
+  stroke: var(--violet);
+  stroke-width: 1.25;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+
+.cr__swing {
+  transform-box: view-box;
+}
+
+.cr__swing--l {
+  animation: swingL 2.4s infinite;
+}
+
+.cr__swing--r {
+  animation: swingR 2.4s infinite;
+}
+
+/* Pendulum timing: ease-in falling to the bottom, ease-out rising to the top. */
+@keyframes swingL {
+  0% {
+    transform: rotate(24deg);
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+  }
+  100% {
+    transform: rotate(24deg);
+  }
+}
+
+@keyframes swingR {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+  }
+  50% {
+    transform: rotate(-24deg);
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Service art ------------------------------------------------------------- */
+.sa {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sa-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  opacity: 0.5;
+}
+
+.sa-line--strong {
+  opacity: 0.9;
+}
+
+.sa-dimline {
+  opacity: 0.28;
+}
+
+.sa-fill {
+  fill: currentColor;
+  opacity: 0.8;
+}
+
+.sa-dim {
+  opacity: 0.3;
+}
+
+.sa-accent {
+  fill: var(--art-accent, var(--violet));
+}
+
+.sa-label {
+  fill: currentColor;
+  opacity: 0.8;
+  font-family: var(--f-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sa-label--accent {
+  fill: var(--art-accent, var(--violet));
+  opacity: 1;
+}
+
+.sa-type {
+  fill: currentColor;
+  font-family: var(--f-display);
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.sa-guide {
+  fill: none;
+  stroke: var(--art-accent, var(--violet));
+  stroke-width: 1.2;
+  stroke-dasharray: 4 5;
+  animation: march 1.1s linear infinite;
+}
+
+@keyframes march {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+.sa-handle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.4;
+}
+
+.sa-anchor {
+  fill: var(--art-bg, var(--paper));
+  stroke: var(--art-accent, var(--violet));
+  stroke-width: 1.4;
+}
+
+.sa-pen {
+  fill: none;
+  stroke: var(--art-accent, var(--violet));
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.sa-check {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sa-cursor {
+  fill: currentColor;
+  stroke: var(--art-bg, var(--paper));
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.sa-ripple {
+  fill: none;
+  stroke: var(--art-accent, var(--violet));
+  stroke-width: 1.5;
+}
+
+/* Line draws in once */
+.sa-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s var(--ease) 0.2s forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Line draws in, holds, then erases — on a loop */
+.sa-draw-loop {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawloop 4.2s var(--ease-io) infinite;
+}
+
+@keyframes drawloop {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  45%,
+  78% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+/* ERP hub bars */
+.sa-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: bar 2.4s var(--ease-io) infinite alternate;
+}
+
+.sa-bar--2 {
+  animation-delay: 0.4s;
+}
+
+.sa-bar--3 {
+  animation-delay: 0.8s;
+}
+
+@keyframes bar {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Website assembling block by block */
+.sa-b1,
+.sa-b2,
+.sa-b3,
+.sa-b4 {
+  animation: buildFill 6s var(--ease) infinite;
+}
+
+.sa-b5,
+.sa-b6 {
+  animation: build 6s var(--ease) infinite;
+}
+
+.sa-b2 {
+  animation-delay: 0.12s;
+}
+
+.sa-b3 {
+  animation-delay: 0.24s;
+}
+
+.sa-b4 {
+  animation-delay: 0.36s;
+}
+
+.sa-b5 {
+  animation-delay: 0.48s;
+}
+
+.sa-b6 {
+  animation-delay: 0.6s;
+}
+
+@keyframes buildFill {
+  0% {
+    fill-opacity: 0;
+  }
+  10%,
+  88% {
+    fill-opacity: 1;
+  }
+  97%,
+  100% {
+    fill-opacity: 0;
+  }
+}
+
+@keyframes build {
+  0% {
+    opacity: 0;
+  }
+  10%,
+  88% {
+    opacity: 1;
+  }
+  97%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.sa-pulse {
+  animation: pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    fill-opacity: 0.75;
+  }
+}
+
+/* App development: code types out, build completes */
+.sa-type-line {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: typeline 4.8s var(--ease) infinite;
+}
+
+@keyframes typeline {
+  0% {
+    transform: scaleX(0);
+  }
+  12%,
+  86% {
+    transform: scaleX(1);
+  }
+  96%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.sa-progress {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: progress 4.8s var(--ease-io) infinite;
+}
+
+@keyframes progress {
+  0% {
+    transform: scaleX(0);
+  }
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.sa-done {
+  opacity: 0;
+  animation: done 4.8s var(--ease) infinite;
+}
+
+@keyframes done {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  66%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-draw,
+  .sa-draw-loop {
+    stroke-dashoffset: 0;
+  }
+
+  .sa-done {
+    opacity: 1;
+  }
+}
+
+/* AI: typing dots + breathing spark */
+.sa-typing {
+  animation: typing 1.2s ease-in-out infinite;
+}
+
+.sa-typing--2 {
+  animation-delay: 0.15s;
+}
+
+.sa-typing--3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    fill-opacity: 0.25;
+  }
+  30% {
+    fill-opacity: 1;
+  }
+}
+
+.sa-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: core 2.8s var(--ease-io) infinite;
+}
+
+@keyframes core {
+  50% {
+    transform: scale(1.18) rotate(45deg);
+  }
+}
+
+.sa-spark-ink {
+  fill: var(--art-bg, #fff);
+}

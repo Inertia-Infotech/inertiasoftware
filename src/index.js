@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/global.css';
+import 'lenis/dist/lenis.css';
+import './styles/base.css';
+import './styles/components.css';
+import './styles/art.css';
+import './styles/shots.css';
+import './styles/home.css';
+import './styles/pages.css';
 import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

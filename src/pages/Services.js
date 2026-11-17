@@ -1,91 +1,65 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { servicesData } from '../assets/servicesData';
-import '../styles/ServicesPage.css';
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import ServiceArt from '../components/ServiceArt';
+import { PageHero, ProcessSection } from '../components/Sections';
+import { Words } from '../components/Words';
+import { SwapArrow, Check } from '../components/Icons';
+import { services } from '../data/services';
+import { useReveal } from '../lib/motion';
+import useTitle from '../lib/useTitle';
 
-const Services = () => {
-  const navigate = useNavigate();
+export default function Services() {
+  const root = useRef(null);
+  useTitle('Services', 'ERP software, website design, app design, app development and custom software solutions by Inertia Software.');
+  useReveal(root);
 
   return (
-    <div className="services-page">
-      {/* Page Hero */}
-      <section className="page-hero">
-        <div className="page-hero-bg"></div>
-        <div className="container">
-          <div className="page-hero-content">
-            <span className="section-tag">What We Offer</span>
-            <h1 className="page-hero-title">Our Services</h1>
-            <p className="page-hero-subtitle">
-              We deliver end-to-end digital solutions that help businesses grow, scale, and stay ahead in a rapidly evolving world.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div ref={root}>
+      <PageHero
+        eyebrow="Services"
+        title="Design and engineering for *growing* businesses."
+        lede="Six focused services, one team. Pick one, or combine them. Most of our clients start with a conversation about the problem, not the technology."
+      >
+        <ul className="jump" data-stagger="">
+          {services.map((s) => (
+            <li key={s.slug}>
+              <a href={`#${s.slug}`} className="chip">
+                <span className="chip__dot" style={{ background: s.color }} /> {s.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </PageHero>
 
-      {/* Services Detail */}
-      <section className="services-detail-section">
-        <div className="container">
-          {servicesData.map((service, idx) => (
-            <div
-              key={service.id}
-              className={`service-detail-block ${idx % 2 === 1 ? 'service-detail-block--reversed' : ''}`}
-            >
-              <div className="service-detail-image-col">
-                <div className="service-detail-image-wrapper">
-                  <img
-                    src={service.heroImage}
-                    alt={service.title}
-                    className="service-detail-image"
-                  />
-                  <div
-                    className="service-detail-image-overlay"
-                    style={{ '--service-color': service.color }}
-                  >
-                    <i className={service.icon}></i>
-                  </div>
-                </div>
+      <div className="sblocks">
+        {services.map((s, i) => (
+          <article className={`section sblock ${i % 2 ? 'sblock--flip' : ''}`} id={s.slug} key={s.slug} aria-labelledby={`${s.slug}-t`} style={{ '--c': s.color }}>
+            <div className="container sblock__grid">
+              <div className="sblock__art" data-fade="" style={{ '--tint': s.tint, '--art-accent': s.color, '--art-bg': s.tint }}>
+                <ServiceArt kind={s.art} />
               </div>
-
-              <div className="service-detail-content">
-                <div className="service-detail-icon" style={{ '--service-color': service.color }}>
-                  <i className={service.icon}></i>
-                </div>
-                <h2 className="service-detail-title">{service.title}</h2>
-                <p className="service-detail-desc">{service.fullDesc}</p>
-
-                <div className="service-detail-features">
-                  {service.features.slice(0, 4).map((feature, i) => (
-                    <div key={i} className="service-detail-feature" style={{ '--service-color': service.color }}>
-                      <i className="fa fa-check"></i>
-                      <span>{feature}</span>
-                    </div>
+              <div className="sblock__copy">
+                <span className="sblock__no" data-fade="" style={{ '--c': s.color }}>{s.no} / {String(services.length).padStart(2, '0')}</span>
+                <Words as="h2" id={`${s.slug}-t`} className="h2" text={s.title} />
+                <p className="sblock__intro" data-fade="0.1">{s.intro}</p>
+                <ul className="ticks" data-stagger="">
+                  {s.deliverables.slice(0, 6).map((d) => (
+                    <li key={d}>
+                      <Check width={18} height={18} />
+                      {d}
+                    </li>
                   ))}
-                </div>
-
-                <div className="service-detail-actions">
-                  <button
-                    className="btn-primary"
-                    onClick={() => navigate(`/services/${service.slug}`)}
-                    style={{ background: service.color, borderColor: service.color }}
-                  >
-                    Learn More
-                    <i className="fa fa-arrow-right"></i>
-                  </button>
-                  <button
-                    className="btn-outline"
-                    onClick={() => navigate('/contact')}
-                    style={{ color: service.color, borderColor: service.color }}
-                  >
-                    Get Quote
-                  </button>
-                </div>
+                </ul>
+                <Link to={`/services/${s.slug}`} className="textlink" data-fade="0.1">
+                  Explore {s.title} <SwapArrow />
+                </Link>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </article>
+        ))}
+      </div>
+
+      <ProcessSection />
     </div>
   );
-};
-
-export default Services;
+}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f7f6fc" />
 
     <title>Inertia Software — ERP, Website &amp; App Development Studio</title>
     <meta
@@ -28,14 +28,28 @@
     <meta name="twitter:description" content="ERP, website and app development studio." />
 
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Plus+Jakarta+Sans:wght@400..800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Self-hosted fonts (SIL Open Font License), preloaded so text never waits on a third party -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: 'Bricolage Grotesque';
+        font-style: normal;
+        font-weight: 200 800;
+        font-display: swap;
+        src: url('%PUBLIC_URL%/fonts/bricolage-grotesque.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Plus Jakarta Sans';
+        font-style: normal;
+        font-weight: 200 800;
+        font-display: swap;
+        src: url('%PUBLIC_URL%/fonts/plus-jakarta-sans.woff2') format('woff2');
+      }
+      html, body { margin: 0; background: #f7f6fc; }
+    </style>
   </head>
 
   <body>

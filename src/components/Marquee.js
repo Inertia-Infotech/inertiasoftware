@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { gsap, useGSAP, getLenis, prefersReducedMotion } from '../lib/motion';
+import { gsap, useGSAP, getLenis, prefersReducedMotion, ScrollTrigger } from '../lib/motion';
 
 const Star = () => (
   <svg className="marquee__star" viewBox="0 0 24 24" aria-hidden="true">
@@ -20,6 +20,19 @@ export function Ticker({ items, className = '', reverse = false }) {
       const tween = gsap.to(track, { xPercent: -50, duration: 36, ease: 'none', repeat: -1 });
       tween.totalTime(tween.duration() * 200); // headroom so it can play in reverse
       tween.timeScale(base);
+
+      // Only run while the tape is on screen.
+      tween.pause();
+      ScrollTrigger.create({
+        trigger: root.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: (self) => {
+          if (self.isActive) tween.resume();
+          else tween.pause();
+          root.current?.classList.toggle('is-off', !self.isActive);
+        },
+      });
 
       const lenis = getLenis();
       if (!lenis) return undefined;

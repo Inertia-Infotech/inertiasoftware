@@ -22,25 +22,15 @@ function Hero() {
       if (prefersReducedMotion()) return undefined;
       const cards = gsap.utils.toArray('.deck__card', root.current);
 
-      // Cards rise in on load…
-      gsap.from(gsap.utils.toArray('.deck__in', root.current), {
-        y: 140,
-        autoAlpha: 0,
-        duration: 1.3,
-        ease: 'expo.out',
-        stagger: 0.08,
-        delay: 0.5,
-      });
-
       // Headline drifts up and softens as you scroll away from the hero.
       gsap.to('.hero__inner', {
-        yPercent: -22,
-        autoAlpha: 0.25,
+        yPercent: -16,
+        opacity: 0.55,
         ease: 'none',
         scrollTrigger: { trigger: root.current, start: 'top top', end: '70% top', scrub: true },
       });
 
-      // …start fanned like a hand of cards, and straighten as you scroll.
+      // Cards start fanned like a hand of cards, and straighten as you scroll.
       const mm = gsap.matchMedia();
       mm.add('(min-width: 1200px)', () => {
         const rot = [-12, -7, -2.4, 2.4, 7, 12];
@@ -94,15 +84,14 @@ function Hero() {
           id="hero-title"
           className="hero__title display"
           text="Websites, apps & ERP software that keep your business *moving*."
-          delay="0.1"
         />
 
-        <p className="hero__lede lede" data-fade="0.35">
+        <p className="hero__lede lede" data-fade="0.15">
           Inertia is an independent design &amp; development studio. We turn ideas and messy processes into fast,
           beautiful software that your team and customers love to use.
         </p>
 
-        <div className="hero__actions" data-fade="0.45">
+        <div className="hero__actions" data-fade="0.25">
           <Link to="/contact" className="btn btn--grad">
             <span>Start a project</span>
             <SwapArrow />
@@ -233,7 +222,7 @@ function ServicesList() {
             <div className="svc__stage" style={{ '--c': current.color }}>
               {services.map((s, i) => (
                 <div key={s.slug} className={`svc__art ${active === i ? 'is-active' : ''}`} style={artVars(s)}>
-                  <ServiceArt kind={s.art} />
+                  <ServiceArt kind={s.art} active={active === i} />
                 </div>
               ))}
             </div>

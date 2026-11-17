@@ -47,9 +47,9 @@ export function setScrollLocked(locked) {
 
 /**
  * Scroll-triggered reveals for everything inside `scope`:
- *  [data-split]     word-by-word masked rise (use the <Words> component)
- *  [data-fade]      soft fade + rise; value = delay in seconds
- *  [data-stagger]   children fade in one after another
+ *  [data-split]     heading glides up into place (use the <Words> component)
+ *  [data-fade]      block glides up into place
+ *  [data-stagger]   children glide up one after another
  *  [data-parallax]  drifts while scrolling; value = strength (e.g. 0.15)
  *  [data-scrub]     words light up as you scroll (use <ScrubText>)
  */
@@ -59,41 +59,20 @@ export function useReveal(scope, dependencies = []) {
       if (prefersReducedMotion()) return;
       const q = gsap.utils.selector(scope);
 
-      q('[data-split]').forEach((el) => {
-        el.classList.add('is-masked');
-        gsap.from(el.querySelectorAll('.w > span'), {
-          yPercent: 115,
-          duration: 1.15,
-          ease: 'expo.out',
-          stagger: 0.045,
-          delay: parseFloat(el.dataset.delay) || 0,
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-          // Drop the mask once revealed so italic tails and punctuation are never clipped.
-          onComplete: () => el.classList.remove('is-masked'),
-        });
-      });
-
-      q('[data-fade]').forEach((el) => {
-        gsap.from(el, {
-          autoAlpha: 0,
-          y: 32,
+      // Everything stays visible from the first frame (no masks, no fade-from-zero),
+      // it just glides a few pixels into place as it enters — smooth, never "loading".
+      const glide = (targets, trigger, y, extra = {}) =>
+        gsap.from(targets, {
+          y,
           duration: 1.1,
           ease: 'power3.out',
-          delay: parseFloat(el.dataset.fade) || 0,
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+          scrollTrigger: { trigger, start: 'top 92%', once: true },
+          ...extra,
         });
-      });
 
-      q('[data-stagger]').forEach((el) => {
-        gsap.from(el.children, {
-          autoAlpha: 0,
-          y: 24,
-          duration: 0.9,
-          ease: 'power3.out',
-          stagger: 0.08,
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-        });
-      });
+      q('[data-split]').forEach((el) => glide(el, el, 36));
+      q('[data-fade]').forEach((el) => glide(el, el, 24));
+      q('[data-stagger]').forEach((el) => glide(el.children, el, 20, { stagger: 0.06 }));
 
       q('[data-parallax]').forEach((el) => {
         const strength = parseFloat(el.dataset.parallax) || 0.15;
@@ -111,7 +90,7 @@ export function useReveal(scope, dependencies = []) {
       q('[data-scrub]').forEach((el) => {
         gsap.fromTo(
           el.querySelectorAll('.sw'),
-          { opacity: 0.16 },
+          { opacity: 0.25 },
           {
             opacity: 1,
             ease: 'none',

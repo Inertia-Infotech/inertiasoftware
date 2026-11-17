@@ -40,11 +40,12 @@
   background: linear-gradient(rgba(255, 255, 255, 0), var(--paper));
 }
 
+/* Soft colour glows: radial gradients instead of blur filters (cheap to draw, GPU-animated) */
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(72px);
-  opacity: 0.5;
+  opacity: 0.75;
+  will-change: transform;
   animation: drift 18s ease-in-out infinite alternate;
 }
 
@@ -53,7 +54,7 @@
   aspect-ratio: 1;
   top: -12%;
   left: -14%;
-  background: #8b6cff;
+  background: radial-gradient(closest-side, rgba(139, 108, 255, 0.7), rgba(139, 108, 255, 0));
 }
 
 .blob--b {
@@ -61,7 +62,7 @@
   aspect-ratio: 1;
   top: 4%;
   right: -16%;
-  background: #ff86c3;
+  background: radial-gradient(closest-side, rgba(255, 134, 195, 0.65), rgba(255, 134, 195, 0));
   animation-delay: -6s;
 }
 
@@ -70,8 +71,7 @@
   aspect-ratio: 1;
   top: 34%;
   left: 32%;
-  background: #ffb36b;
-  opacity: 0.38;
+  background: radial-gradient(closest-side, rgba(255, 179, 107, 0.5), rgba(255, 179, 107, 0));
   animation-delay: -11s;
 }
 

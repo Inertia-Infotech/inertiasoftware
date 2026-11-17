@@ -204,9 +204,7 @@
 
 /* Line draws in once */
 .sa-draw {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 1.6s var(--ease) 0.2s forwards;
+  stroke-dasharray: none;
 }
 
 @keyframes draw {
@@ -218,20 +216,23 @@
 /* Line draws in, holds, then erases — on a loop */
 .sa-draw-loop {
   stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+  stroke-dashoffset: 0;
   animation: drawloop 4.2s var(--ease-io) infinite;
 }
 
 @keyframes drawloop {
-  0% {
-    stroke-dashoffset: 1;
-  }
-  45%,
-  78% {
+  0%,
+  55% {
     stroke-dashoffset: 0;
   }
-  100% {
+  80% {
     stroke-dashoffset: -1;
+  }
+  80.1% {
+    stroke-dashoffset: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -293,30 +294,28 @@
 }
 
 @keyframes buildFill {
-  0% {
-    fill-opacity: 0;
-  }
-  10%,
-  88% {
+  0%,
+  76% {
     fill-opacity: 1;
   }
-  97%,
-  100% {
+  84% {
     fill-opacity: 0;
+  }
+  100% {
+    fill-opacity: 1;
   }
 }
 
 @keyframes build {
-  0% {
-    opacity: 0;
-  }
-  10%,
-  88% {
+  0%,
+  76% {
     opacity: 1;
   }
-  97%,
-  100% {
+  84% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -338,16 +337,15 @@
 }
 
 @keyframes typeline {
-  0% {
-    transform: scaleX(0);
-  }
-  12%,
-  86% {
+  0%,
+  70% {
     transform: scaleX(1);
   }
-  96%,
-  100% {
+  78% {
     transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }
 
@@ -435,4 +433,10 @@
 
 .sa-spark-ink {
   fill: var(--art-bg, #fff);
+}
+
+/* Illustrations rest while off-screen (see useAnimateInView) */
+.is-paused,
+.is-paused * {
+  animation-play-state: paused !important;
 }

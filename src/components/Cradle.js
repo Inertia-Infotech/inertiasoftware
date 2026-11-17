@@ -1,4 +1,5 @@
 import React from 'react';
+import useAnimateInView from '../lib/useAnimateInView';
 
 // Newton's cradle — "a body in motion stays in motion" (Newton's first law, the law of inertia).
 // One ball per service colour. Pure SVG + CSS keyframes; pivots rotate around the top bar.
@@ -20,8 +21,9 @@ function Ball({ i, className }) {
 }
 
 export default function Cradle({ className = '' }) {
+  const ref = useAnimateInView();
   return (
-    <svg className={`cradle ${className}`} viewBox="0 0 640 460" role="img" aria-label="An animated Newton's cradle">
+    <svg ref={ref} className={`cradle is-paused ${className}`} viewBox="0 0 640 460" role="img" aria-label="An animated Newton's cradle">
       <g className="cr__frame">
         <line x1="16" y1={TOP} x2="624" y2={TOP} />
         <line x1="16" y1={TOP} x2="16" y2="440" />

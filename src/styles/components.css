@@ -330,6 +330,10 @@
   animation: spin 8s linear infinite;
 }
 
+.marquee.is-off .marquee__star {
+  animation-play-state: paused;
+}
+
 .tape--dark .marquee__star {
   color: var(--yellow);
 }

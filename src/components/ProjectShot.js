@@ -18,7 +18,7 @@ import tmBooks from '../assets/work/tm-books.jpg';
 // where 1em = 1% of the card width (container query units), so each shot scales
 // perfectly from a phone card to a full-width desktop card.
 
-const Img = ({ src, alt = '' }) => <img src={src} alt={alt} loading="lazy" decoding="async" />;
+const Img = ({ src, alt = '' }) => <img src={src} alt={alt} decoding="async" fetchpriority="low" />;
 
 function Browser({ url, children, className = '' }) {
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import useAnimateInView from '../lib/useAnimateInView';
 
 // Line illustrations for each service. Strokes use currentColor so they work on light and dark
 // backgrounds; highlights use the accent colour. All motion is SMIL/CSS and pauses for reduced motion.
@@ -241,11 +242,13 @@ function Ai() {
 
 const ARTS = { erp: Erp, web: Web, design: Design, dev: Dev, flow: Flow, ai: Ai };
 
-export default function ServiceArt({ kind, className = '', title }) {
+export default function ServiceArt({ kind, className = '', title, active = true }) {
   const Art = ARTS[kind] || Flow;
+  const ref = useAnimateInView(active);
   return (
     <svg
-      className={`sa ${className}`}
+      ref={ref}
+      className={`sa is-paused ${className}`}
       viewBox="0 0 400 300"
       role={title ? 'img' : undefined}
       aria-label={title}

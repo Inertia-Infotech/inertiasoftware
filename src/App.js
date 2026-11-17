@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/Header';
@@ -9,18 +9,10 @@ import ServiceDetail from './pages/ServiceDetail';
 import Work from './pages/Work';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import { initSmoothScroll, scrollToTop, ScrollTrigger, gsap, useGSAP, prefersReducedMotion } from './lib/motion';
+import { initSmoothScroll, scrollToTop, ScrollTrigger } from './lib/motion';
 
 function Page({ children }) {
-  const ref = useRef(null);
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) return;
-      gsap.from(ref.current, { autoAlpha: 0, duration: 0.6, ease: 'power2.out' });
-    },
-    { scope: ref }
-  );
-  return <div ref={ref}>{children}</div>;
+  return <div>{children}</div>;
 }
 
 function Shell() {

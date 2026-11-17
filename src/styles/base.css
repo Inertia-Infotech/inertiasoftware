@@ -285,27 +285,15 @@ p {
   padding: 8px 16px 8px 14px;
   border: 1px solid var(--line-2);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-/* Word reveal (see <Words>). The mask only exists while animating, so nothing stays clipped. */
-[data-split] .w {
-  display: inline-block;
-  vertical-align: top;
-}
-
+/* Headings split into words (see <Words>) — always fully visible, never masked. */
+[data-split] .w,
 [data-split] .w > span {
-  display: inline-block;
-}
-
-[data-split].is-masked .w {
-  overflow: hidden;
-  padding: 0.1em 0.14em 0.24em;
-  margin: -0.1em -0.14em -0.24em;
+  display: inline;
 }
 
 .br-desk {
